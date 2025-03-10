@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifying the "C" Sound</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .hint-container {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .hint {
+            display: inline-block;
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .hint-iframe {
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        label input {
+            margin-right: 10px;
+        }
+        iframe {
+            width: 400px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            margin-left: 10px; /* Adds spacing between the letter (A, B, C) and the iframe */
+        }
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Identifying the "C" Sound</h1>
+
+    <!-- Hint Section -->
+    <div class="hint-container">
+        <span class="hint" onclick="playHint()">Need a Hint? Play a C Note</span>
+        <iframe id="hint-audio" class="hint-iframe" src="https://drive.google.com/file/d/1J-8nlCN5Z9h1MeJlb_a2bVa9S6TovIQy/preview" allow="autoplay"></iframe>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="question">
+        <p><strong>Question 1: Which sound is a C note?</strong></p>
+        <label>
+            <input type="radio" name="q1" value="A"> A)
+            <iframe src="https://drive.google.com/file/d/1JLGoY8VfOP5k1yIc8UIaDTMNQCKiuZJm/preview" allow="autoplay"></iframe>
+        </label>
+        <label>
+            <input type="radio" name="q1" value="B"> B)
+            <iframe src="https://drive.google.com/file/d/1J-8nlCN5Z9h1MeJlb_a2bVa9S6TovIQy/preview" allow="autoplay"></iframe>
+        </label>
+        <label>
+            <input type="radio" name="q1" value="C"> C)
+            <iframe src="https://drive.google.com/file/d/1rkbjyVoAlNN68U0Cq4CHyqFivpNpRU6s/preview" allow="autoplay"></iframe>
+        </label>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+        <p><strong>Question 2: Which sound is a C note?</strong></p>
+        <label>
+            <input type="radio" name="q2" value="A"> A)
+            <iframe src="https://drive.google.com/file/d/1J-8nlCN5Z9h1MeJlb_a2bVa9S6TovIQy/preview" allow="autoplay"></iframe>
+        </label>
+        <label>
+            <input type="radio" name="q2" value="B"> B)
+            <iframe src="https://drive.google.com/file/d/1n3TdIYKHxXjywKgYQc1LLB_a2QKg9HV1/preview" allow="autoplay"></iframe>
+        </label>
+        <label>
+            <input type="radio" name="q2" value="C"> C)
+            <iframe src="https://drive.google.com/file/d/1SyCR93-5U-rDXuKgtKY3SLpPTzZXqP0g/preview" allow="autoplay"></iframe>
+        </label>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question">
+        <p><strong>Question 3: Which sound is a C note?</strong></p>
+        <label>
+            <input type="radio" name="q3" value="A"> A)
+            <iframe src="https://drive.google.com/file/d/1HX4ik_rfN6zRLdCpgP2fHx--A1jUZg-7/preview" allow="autoplay"></iframe>
+        </label>
+        <label>
+            <input type="radio" name="q3" value="B"> B)
+            <iframe src="https://drive.google.com/file/d/1JLGoY8VfOP5k1yIc8UIaDTMNQCKiuZJm/preview" allow="autoplay"></iframe>
+        </label>
+        <label>
+            <input type="radio" name="q3" value="C"> C)
+            <iframe src="https://drive.google.com/file/d/1J-8nlCN5Z9h1MeJlb_a2bVa9S6TovIQy/preview" allow="autoplay"></iframe>
+        </label>
+    </div>
+
+    <button class="submit-btn" onclick="submitQuiz()">Submit</button>
+
+    <script>
+        function playHint() {
+            let hintAudio = document.getElementById("hint-audio");
+            hintAudio.src = hintAudio.src; // Reloads the iframe to replay the audio
+        }
+
+        function submitQuiz() {
+            // Correct answers
+            const answers = { q1: "B", q2: "A", q3: "C" };
+
+            let score = 0;
+            let totalQuestions = 3;
+            let resultText = "Quiz Results:\n";
+
+            for (let q in answers) {
+                let selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected) {
+                    if (selected.value === answers[q]) {
+                        score++;
+                        resultText += `${q.toUpperCase()}: ✅ Correct\n`;
+                    } else {
+                        resultText += `${q.toUpperCase()}: ❌ Incorrect (You chose ${selected.value})\n`;
+                    }
+                } else {
+                    resultText += `${q.toUpperCase()}: ❌ No answer selected\n`;
+                }
+            }
+
+            resultText += `\nFinal Score: ${score} / ${totalQuestions}`;
+
+            let mailtoLink = `mailto:leojcg@icloud.com?subject=Piano Quiz Completed&body=${encodeURIComponent(resultText)}`;
+            window.location.href = mailtoLink;
+
+            alert(`You scored ${score} out of ${totalQuestions}!`);
+        }
+    </script>
+
+</body>
+</html>
